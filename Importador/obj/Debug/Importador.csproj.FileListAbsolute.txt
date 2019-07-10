@@ -1,0 +1,8 @@
+c:\users\everton\documents\visual studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe.config
+C:\Users\Everton\documents\visual studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe
+C:\Users\Everton\documents\visual studio 2013\Projects\Importador\Importador\bin\Debug\Importador.pdb
+C:\Users\Everton\documents\visual studio 2013\Projects\Importador\Importador\obj\Debug\Importador.csprojResolveAssemblyReference.cache
+C:\Users\Everton\documents\visual studio 2013\Projects\Importador\Importador\obj\Debug\Importador.ProjectInstaller.resources
+C:\Users\Everton\documents\visual studio 2013\Projects\Importador\Importador\obj\Debug\Importador.csproj.GenerateResource.Cache
+C:\Users\Everton\documents\visual studio 2013\Projects\Importador\Importador\obj\Debug\Importador.exe
+C:\Users\Everton\documents\visual studio 2013\Projects\Importador\Importador\obj\Debug\Importador.pdb

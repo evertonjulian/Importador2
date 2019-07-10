@@ -1,0 +1,61 @@
+﻿Instalando o assembly 'C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.InstallLog
+   assemblypath = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe
+Instalando o serviço Importador...
+Criando a origem de EventLog Importador no log Application...
+Revertendo o assembly 'C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.InstallLog
+   assemblypath = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe
+Restaurando o log de eventos para o estado anterior da origem Importador.
+Ocorreu uma exceção durante a fase de reversão do instalador System.Diagnostics.EventLogInstaller.
+System.Security.SecurityException: Fonte não encontrada, mas alguns ou todos os logs de evento não puderam ser pesquisados. Logs inacessíveis: Security.
+Ocorreu uma exceção durante a fase de reversão da instalação. Essa exceção será ignorada e a reversão continuará. Mas talvez o computador não reverta totalmente para o estado inicial após a conclusão da reversão.
+Instalando o assembly 'C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.InstallLog
+   assemblypath = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe
+Instalando o serviço Importador...
+Criando a origem de EventLog Importador no log Application...
+Revertendo o assembly 'C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.InstallLog
+   assemblypath = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe
+Restaurando o log de eventos para o estado anterior da origem Importador.
+Ocorreu uma exceção durante a fase de reversão do instalador System.Diagnostics.EventLogInstaller.
+System.Security.SecurityException: Fonte não encontrada, mas alguns ou todos os logs de evento não puderam ser pesquisados. Logs inacessíveis: Security.
+Ocorreu uma exceção durante a fase de reversão da instalação. Essa exceção será ignorada e a reversão continuará. Mas talvez o computador não reverta totalmente para o estado inicial após a conclusão da reversão.
+Instalando o assembly 'C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe
+   logfile = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.InstallLog
+Instalando o serviço Importador...
+Criando a origem de EventLog Importador no log Application...
+Revertendo o assembly 'C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe
+   logfile = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.InstallLog
+Restaurando o log de eventos para o estado anterior da origem Importador.
+Ocorreu uma exceção durante a fase de reversão do instalador System.Diagnostics.EventLogInstaller.
+System.Security.SecurityException: Fonte não encontrada, mas alguns ou todos os logs de evento não puderam ser pesquisados. Logs inacessíveis: Security.
+Ocorreu uma exceção durante a fase de reversão da instalação. Essa exceção será ignorada e a reversão continuará. Mas talvez o computador não reverta totalmente para o estado inicial após a conclusão da reversão.
+Instalando o assembly 'C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.InstallLog
+   assemblypath = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe
+Instalando o serviço Importador...
+Serviço Importador foi instalado com êxito.
+Criando a origem de EventLog Importador no log Application...
+Confirmando o assembly 'C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.InstallLog
+   assemblypath = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe
