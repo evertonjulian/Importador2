@@ -1,56 +1,26 @@
 ﻿using Importador.Util;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Importador.Classes
 {
-    public class Arquivo
+    public static class Arquivo
     {
-        StreamWriter writer;
+        static readonly char separador = Convert.ToChar(ConfigurationManager.AppSettings["Separador"]);
 
-        public void VerificarDiretorio()
-        {
-            var arquivos = Directory.GetFiles(@"C:\data\in", "*.dat");
-
-            if (arquivos.Length > 0)
-            {
-                ExecutarLeituraArquivos(arquivos);
-            }
-        }
-
-        protected void ExecutarLeituraArquivos(string[] arquivos)
-        {
-            foreach (var arquivo in arquivos)
-            {
-                if (File.Exists(arquivo))
-                {
-                    var nomeArquivo = Path.GetFileNameWithoutExtension(arquivo);
-                    writer = new StreamWriter(@"C:\data\out\" + nomeArquivo + ".done.dat");
-
-                    var conteudoArquivo = LerArquivo(arquivo);
-
-                    if (conteudoArquivo.Any())
-                    {
-                        ProcessarArquivo(conteudoArquivo);
-                    }
-
-                    File.Move(arquivo, @"C:\data\read\" + Path.GetFileName(arquivo));
-
-                    writer.Flush();
-                    writer.Close();
-                }
-            }
-        }
-
-        protected List<string> LerArquivo(string arquivo)
+        public static List<string> LerArquivo(string arquivo)
         {
             List<string> conteudoArquivo = new List<string>();
 
-            try
+            if (File.Exists(arquivo))
             {
                 using (StreamReader sr = new StreamReader(arquivo))
                 {
@@ -62,106 +32,85 @@ namespace Importador.Classes
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                writer.WriteLine("Ocorreu um erro durante a leitura do arquivo " +
-                                 arquivo + ": " + ex.Message);
-            }
 
             return conteudoArquivo;
         }
 
-        protected void ProcessarArquivo(List<string> listaDados)
+        public static Processamento ProcessarArquivo(List<string> conteudoArquivo)
         {
-            List<Vendedor> vendedores = new List<Vendedor>();
             List<Cliente> clientes = new List<Cliente>();
             List<Venda> vendas = new List<Venda>();
+            List<Vendedor> vendedores = new List<Vendedor>();
 
-            foreach (var linha in listaDados)
+            foreach (var linha in conteudoArquivo)
             {
-                var dados = linha.Split('|');
-
-                if (dados.Length == 4)
+                var tipoDado = (Enums.TipoDados)Convert.ToInt32(linha.Substring(0, linha.IndexOf(separador)));
+                
+                switch (tipoDado)
                 {
-                    var tipoRegistro = (Enums.TipoRegistro)Convert.ToInt32(dados[0]);
+                    case Enums.TipoDados.Vendedor:
+                        
+                        vendedores.Add(ExtrairDadosVendedor(linha));
+                        break;
 
-                    switch (tipoRegistro)
-                    {
-                        case Enums.TipoRegistro.Vendedor:
+                    case Enums.TipoDados.Cliente:
+                            
+                        clientes.Add(ExtrairDadosCliente(linha));
+                        break;
 
-                            var novoVendedor = new Vendedor
-                            {
-                                Cpf = dados[1],
-                                Nome = dados[2],
-                                Salario = Convert.ToDecimal(dados[3])
-                            };
+                    case Enums.TipoDados.Venda:
+                        
+                        vendas.Add(ExtrairDadosVenda(linha));
+                        break;
 
-                            vendedores.Add(novoVendedor);
-                            break;
-
-                        case Enums.TipoRegistro.Cliente:
-
-                            var novoCliente = new Cliente
-                            {
-                                Cnpj = dados[1],
-                                Nome = dados[2],
-                                AreaNegocios = dados[3]
-                            };
-
-                            clientes.Add(novoCliente);
-                            break;
-
-                        case Enums.TipoRegistro.Venda:
-
-                            var novaVenda = new Venda
-                            {
-                                Id = Convert.ToInt32(dados[1]),
-                                Itens = new List<Item>(),
-                                NomeVendedor = dados[3]
-                            };
-
-                            var listaItens = dados[2].Remove(0, 1).Remove(dados[2].Length - 2, 1).Split(',');
-
-                            foreach (var item in listaItens)
-                            {
-                                var dadosItem = item.Split('-');
-
-                                var novoItem = new Item
-                                {
-                                    Id = Convert.ToInt32(dadosItem[0]),
-                                    Quantidade = Convert.ToInt32(dadosItem[1]),
-                                    Preco = Decimal.Parse(dadosItem[2].Replace('.', ','))
-                                };
-
-                                novaVenda.Itens.Add(novoItem);
-                            }
-
-                            vendas.Add(novaVenda);
-                            break;
-
-                        default:
-                            break;
-                    }
+                    default:
+                        break;
                 }
+                
             }
 
-            var pior = vendas.GroupBy(x => x.NomeVendedor)
-                                     .Select(x => new
-                                     {
-                                         x.Key,
-                                         valorVenda = x.SelectMany(y => y.Itens).Sum(i => i.Preco * i.Quantidade)
-                                     }).ToList()
-                                     .OrderBy(x => x.valorVenda)
-                                     .FirstOrDefault();
-
-            var maiorVenda = vendas.OrderByDescending(x => x.Itens.Sum(i => i.Preco * i.Quantidade))
-                                   .FirstOrDefault();
-
-            writer.WriteLine("Quatidade total de clientes no arquivo: " + clientes.Count);
-            writer.WriteLine("Quatidade total de vendedores no arquivo: " + vendedores.Count);
-            writer.WriteLine("A venda mais cara é a de Id número " + maiorVenda.Id);
-            writer.WriteLine("O pior vendedor é " + pior.Key);
+            return new Processamento(clientes, vendas, vendedores);
         }
         
+        private static Vendedor ExtrairDadosVendedor(string dados)
+        {
+            var cpf = Regex.Match(dados, $"{separador}(\\d*){separador}").Groups[1].Value;
+            var nome = Regex.Match(dados, $"\\d{separador}(\\D*){separador}\\d").Groups[1].Value;
+            var salario = decimal.Parse(dados.Substring(dados.LastIndexOf(separador) + 1).Replace('.', ','));
+
+            return new Vendedor(cpf, nome, salario);
+        }
+
+        private static Cliente ExtrairDadosCliente(string dados)
+        {
+            var cnpj = Regex.Match(dados, $"{separador}(\\d*){separador}").Groups[1].Value;
+            var nome = Regex.Match(dados, $"\\d{separador}(\\D*){separador}\\d").Groups[1].Value;
+            var areaNegocios = dados.Substring(dados.LastIndexOf(separador) + 1);
+
+            return new Cliente(cnpj, nome, areaNegocios);
+        }
+
+        private static Venda ExtrairDadosVenda(string dados)
+        {
+            var idVenda = Convert.ToInt32(Regex.Match(dados, $"\\d{separador}(\\d+){separador}\\[").Groups[1].Value);
+            var nomeVendedor = dados.Substring(dados.LastIndexOf($"]{separador}") + 1);
+
+            var dadosArrayItens = Regex.Match(dados, $"\\d{separador}\\[(...+)\\]{separador}").Groups[1].Value;
+            var listaItens = new List<Item>();
+
+            foreach (var item in dadosArrayItens.Split(','))
+            {
+                var dadosItem = item.Split('-');
+
+                var idItem = Convert.ToInt32(dadosItem[0]);
+                var quantidade = Convert.ToInt32(dadosItem[1]);
+                var preco = decimal.Parse(dadosItem[2].Replace('.', ','));
+
+                listaItens.Add(new Item(idItem, quantidade, preco));
+            }
+
+            return new Venda(idVenda, listaItens, nomeVendedor);
+        }
+
     }
 }

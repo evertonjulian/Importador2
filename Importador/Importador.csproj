@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -48,6 +49,7 @@
     <Compile Include="Classes\Cliente.cs" />
     <Compile Include="Classes\Item.cs" />
     <Compile Include="Classes\Pessoa.cs" />
+    <Compile Include="Classes\Processamento.cs" />
     <Compile Include="Classes\Venda.cs" />
     <Compile Include="Classes\Vendedor.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -56,11 +58,11 @@
     <Compile Include="ProjectInstaller.Designer.cs">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
-    <Compile Include="Service1.cs">
+    <Compile Include="Importador.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Service1.Designer.cs">
-      <DependentUpon>Service1.cs</DependentUpon>
+    <Compile Include="Importador.Designer.cs">
+      <DependentUpon>Importador.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +72,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Importador.resx">
+      <DependentUpon>Importador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectInstaller.resx">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>

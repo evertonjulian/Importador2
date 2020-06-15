@@ -59,3 +59,16 @@ Parâmetros afetados são:
    logtoconsole = 
    logfile = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.InstallLog
    assemblypath = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe
+Instalando o assembly 'C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.InstallLog
+   assemblypath = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe
+Instalando o serviço Importador...
+Serviço Importador foi instalado com êxito.
+Criando a origem de EventLog Importador no log Application...
+Confirmando o assembly 'C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.InstallLog
+   assemblypath = C:\Users\Everton\Documents\Visual Studio 2013\Projects\Importador\Importador\bin\Debug\Importador.exe

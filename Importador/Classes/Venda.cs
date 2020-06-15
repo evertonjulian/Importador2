@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Importador.Classes
 {
     public class Venda
     {
+        public Venda(int id, List<Item> listaItens, string nomeVendedor)
+        {
+            Id = id;
+            Itens = listaItens;
+            NomeVendedor = nomeVendedor;
+        }
+
         public int Id { get; set; }
-
         public List<Item> Itens { get; set; }
-
         public string NomeVendedor { get; set; }
     }
 }

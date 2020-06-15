@@ -8,7 +8,7 @@ namespace Importador.Util
 {
     public class Enums
     {
-        public enum TipoRegistro
+        public enum TipoDados
         {
             Vendedor = 1,
             Cliente = 2,
